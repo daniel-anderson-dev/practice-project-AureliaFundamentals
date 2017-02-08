@@ -1,4 +1,5 @@
 import {MyBase} from "MyBase";
+import {compute, val2} from "someOtherModule";
 
 export class SimpleClass extends MyBase {
     constructor() {
@@ -7,11 +8,13 @@ export class SimpleClass extends MyBase {
     }
 
     get message() {
-        return "Hello es2015";
+        let threshold = 40;
+        let result = `Hello ${this.name}, are you ${5+threshold} years old?`;
+        return result;
     }
 
     calculate ()
     {
-        return 42;
+        return compute() + val2;
     }
 }
