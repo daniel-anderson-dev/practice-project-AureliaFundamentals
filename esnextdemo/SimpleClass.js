@@ -1,6 +1,8 @@
+import {MyBase} from "MyBase";
 
-export class SimpleClass{
+export class SimpleClass extends MyBase {
     constructor() {
+        super();
         this.name = "Barney";
     }
 
