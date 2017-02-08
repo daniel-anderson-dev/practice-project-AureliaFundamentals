@@ -14,6 +14,9 @@
             console.log(mySimple.message);
             console.log(mySimple.calculate());
             console.log(mySimple.someBaseMethod());
+            mySimple.startEngine().then(function(result) {
+                console.log(result);
+            });
         }
 
         function handleError()

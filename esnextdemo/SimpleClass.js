@@ -17,4 +17,17 @@ export class SimpleClass extends MyBase {
     {
         return compute() + val2;
     }
+
+    startEngine()
+    {
+        var promise = new Promise(function(resolve, reject)
+        {
+            setTimeout(function ()
+            {
+                resolve("Roar");
+            }, 5000);
+        });
+
+        return promise;
+    }
 }
