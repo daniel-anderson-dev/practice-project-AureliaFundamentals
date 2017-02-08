@@ -1,6 +1,5 @@
-"use strict";
 
-class SimpleClass{
+export class SimpleClass{
     constructor() {
         this.name = "Barney";
     }

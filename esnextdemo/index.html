@@ -3,11 +3,22 @@
 
 </head>
 <body>
-    <script src="SimpleClass.js"></script>
+    <script src="jspm_packages/system.js"></script>
+    <script src="config.js"></script>
     <script>
-        var mySimple = new SimpleClass();
-        console.log(mySimple.message);
-        console.log(mySimple.calculate());
+        System.import('SimpleClass').then(useSimple, handleError);
+
+        function useSimple(module)
+        {
+            var mySimple = new module.SimpleClass();
+            console.log(mySimple.message);
+            console.log(mySimple.calculate());
+        }
+
+        function handleError()
+        {
+            console.log('does nothing at the moment ...');
+        }
     </script>
 </body>
 </html>
