@@ -1,10 +1,11 @@
+import {inject, Lazy} from 'aurelia-framework';
 import {DataCache} from 'dataCache';
-import {inject} from 'aurelia-framework';
+import {ImLazy} from 'ImLazy';
 
-@inject(DataCache)
+@inject(DataCache, Lazy.of(ImLazy))
 export class Events
 {
-    constructor(dataCache)
+    constructor(dataCache, lazyOfImLazy)
     {
         this.events = 
         [
@@ -14,5 +15,12 @@ export class Events
 
         this.cache = dataCache;
         this.cache.data.push('a');
+        this.lazyOfImLazy = lazyOfImLazy;
+    }
+
+    createAndUseLazy()
+    {
+        console.log('about to use lazy object.');
+        this.lazyOfImLazy().doStuff();
     }
 }
