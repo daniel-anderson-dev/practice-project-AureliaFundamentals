@@ -1,11 +1,11 @@
-import {inject, Lazy} from 'aurelia-framework';
+import {inject, Lazy, All} from 'aurelia-framework';
 import {DataCache} from 'dataCache';
 import {ImLazy} from 'ImLazy';
 
-@inject(DataCache, Lazy.of(ImLazy))
+@inject(DataCache, Lazy.of(ImLazy), All.of('SuperPlugin'))
 export class Events
 {
-    constructor(dataCache, lazyOfImLazy)
+    constructor(dataCache, lazyOfImLazy, plugins)
     {
         this.events = 
         [
@@ -16,6 +16,10 @@ export class Events
         this.cache = dataCache;
         this.cache.data.push('a');
         this.lazyOfImLazy = lazyOfImLazy;
+
+        plugins.forEach(function(plugIn) {
+            plugIn.doPlugInStuff();
+        });
     }
 
     createAndUseLazy()
