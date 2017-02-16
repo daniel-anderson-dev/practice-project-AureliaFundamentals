@@ -24,6 +24,7 @@ export class Events
 
     createAndUseLazy()
     {
+        // Left in for future reference.
         console.log('about to use lazy object.');
         this.lazyOfImLazy().doStuff();
     }

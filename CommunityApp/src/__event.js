@@ -1,3 +1,5 @@
+// Holding on to the demo code.
+
 import {DataCache} from 'dataCache';
 import {inject} from 'aurelia-framework';
 
