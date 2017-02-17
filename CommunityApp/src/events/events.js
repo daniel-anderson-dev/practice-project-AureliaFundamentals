@@ -1,17 +1,14 @@
 import {inject, Lazy, All} from 'aurelia-framework';
 import {DataCache} from 'dataCache';
 import {ImLazy} from 'ImLazy';
+import {DataRepository} from 'services/dataRepository';
 
-@inject(DataCache, Lazy.of(ImLazy), All.of('SuperPlugin'))
+@inject(DataCache, Lazy.of(ImLazy), All.of('SuperPlugin'), DataRepository)
 export class Events
 {
-    constructor(dataCache, lazyOfImLazy, plugins)
+    constructor(dataCache, lazyOfImLazy, plugins, dataRepository)
     {
-        this.events = 
-        [
-            {id: 1, title: 'First Item'},
-            {id: 2, title: 'Second Item'}
-        ];
+        dataRepository.getEvents().then(events => this.events = events);
 
         this.cache = dataCache;
         this.cache.data.push('a');
