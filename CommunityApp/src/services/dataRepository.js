@@ -5,9 +5,7 @@ import moment from 'moment';
 export class DataRepository
 {
     constructor()
-    {
-        this.events = eventsData;
-    }
+    { }
 
     getEvents()
     {
