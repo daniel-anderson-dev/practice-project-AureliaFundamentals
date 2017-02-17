@@ -23,7 +23,7 @@ export class Events
     }
 
 	activate(params) {
-		this.dataRepository.getEvents().then(events => {
+		return this.dataRepository.getEvents().then(events => {
             // Copy-paste
 			if (params.speaker || params.topic) {
 				var filteredResults = [];
