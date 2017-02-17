@@ -53,4 +53,12 @@ export class Events
         console.log('about to use lazy object.');
         this.lazyOfImLazy().doStuff();
     }
+
+	goToDiscussion()
+	{
+		this.router.navigate('#/discussion');
+		// Navigates to a single Event Detail (the first in the array).
+		// this.router.navigateToRoute('eventDetail', {eventId: this.events[0].id});
+	}
+
 }
