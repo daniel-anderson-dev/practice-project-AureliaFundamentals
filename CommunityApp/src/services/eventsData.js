@@ -1,7 +1,7 @@
 export var eventsData = [
   {
     "id": 124,
-    "description": "REST is an architectural style for building HTTP Web API services that is often misunderstood - many people claim to be building RESTful services but do not know the things they need to be doing to truly qualify as a RESTful service. In this session, you will learn the fundamental architectural constraints that define REST and how you can implement those constraints using ASP.NET Web API. You’ll learn what things you need to do to implement the capabilities that all Web API services should do, such as focus on resources, representations, URIs, content-negotiation, HTTP verbs and headers and so on, as well as the concept of hypermedia and how it pertains to RESTful services.",
+    "description": "<b>REST</b> is an architectural style for building HTTP Web API services that is often misunderstood - many people claim to be building RESTful services but do not know the things they need to be doing to truly qualify as a RESTful service. In this session, you will learn the fundamental architectural constraints that define REST and how you can implement those constraints using ASP.NET Web API. You’ll learn what things you need to do to implement the capabilities that all Web API services should do, such as focus on resources, representations, URIs, content-negotiation, HTTP verbs and headers and so on, as well as the concept of hypermedia and how it pertains to RESTful services.",
     "dateTime": "2017-02-26T23:30:00.000Z",
     "title": "Designing RESTful Services with ASP.NET Web API",
     "speaker": "Brian Noyes",
