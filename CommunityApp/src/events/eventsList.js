@@ -2,13 +2,14 @@ import {inject, Lazy, All} from 'aurelia-framework';
 import {DataCache} from 'dataCache';
 import {ImLazy} from 'ImLazy';
 import {DataRepository} from 'services/dataRepository';
-import {Router} from 'aurelia-router';
+import {Router, activationStrategy} from 'aurelia-router';
 
 @inject(DataCache, Lazy.of(ImLazy), All.of('SuperPlugin'), DataRepository, Router)
 export class Events
 {
     constructor(dataCache, lazyOfImLazy, plugins, dataRepository, router)
     {
+		console.log('Constructor Call for eventsList.js');
         this.dataRepository = dataRepository;
         this.router = router;
 
@@ -22,8 +23,10 @@ export class Events
         });
     }
 
-	activate(params) {
-		return this.dataRepository.getEvents().then(events => {
+	activate(params, routeConfig) {
+		console.log('activate for eventsList.js');
+		var pastOrFuture = routeConfig.name == '' ? 'future' : routeConfig.name;
+		return this.dataRepository.getEvents(pastOrFuture).then(events => {
             // Copy-paste
 			if (params.speaker || params.topic) {
 				var filteredResults = [];
@@ -59,6 +62,32 @@ export class Events
 		this.router.navigate('#/discussion');
 		// Navigates to a single Event Detail (the first in the array).
 		// this.router.navigateToRoute('eventDetail', {eventId: this.events[0].id});
+	}
+
+	canActivate()
+	{
+		console.log('canActivate');
+		return true; // We want it to keep processing.
+	}
+
+	canDeactivate()
+	{
+		console.log('canDeactivate');
+		return true;
+	}
+
+	deactivate()
+	{
+		console.log('deactivate');
+	}
+
+	determineActivationStrategy()
+	{
+		console.log('determineActivationStrategy called.');
+		//return activationStrategy.invokeLifecycle;
+		
+		// Invokes reconstruction.
+		return activationStrategy.replace;
 	}
 
 }

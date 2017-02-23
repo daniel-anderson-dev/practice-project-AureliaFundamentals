@@ -2,7 +2,7 @@ export var eventsData = [
   {
     "id": 124,
     "description": "REST is an architectural style for building HTTP Web API services that is often misunderstood - many people claim to be building RESTful services but do not know the things they need to be doing to truly qualify as a RESTful service. In this session, you will learn the fundamental architectural constraints that define REST and how you can implement those constraints using ASP.NET Web API. You’ll learn what things you need to do to implement the capabilities that all Web API services should do, such as focus on resources, representations, URIs, content-negotiation, HTTP verbs and headers and so on, as well as the concept of hypermedia and how it pertains to RESTful services.",
-    "dateTime": "2013-02-26T23:30:00.000Z",
+    "dateTime": "2017-02-26T23:30:00.000Z",
     "title": "Designing RESTful Services with ASP.NET Web API",
     "speaker": "Brian Noyes",
     "image": "BrianNoyes.png"
@@ -10,7 +10,7 @@ export var eventsData = [
   {
     "id": 131,
     "description": "When modeling your data for an enterprise web application, you may have conflicts within your development team, with other development teams, and also with enterprise architects at your organization. With Code First Migrations, you will have the opportunity to get everyone on the same page by synchronizing your database across various environments.",
-    "dateTime": "2013-08-27T22:30:00.000Z",
+    "dateTime": "2017-08-27T22:30:00.000Z",
     "title": "Entity Framework Code First Migrations - Shahed Chowdhuri",
     "speaker": "Shahed Chowdhuri",
     "image": "ShahedChowdhuri.jpg"
