@@ -1,9 +1,18 @@
+import toastr from 'toastr';
+
 export class Shell
 {
     configureRouter(config, router)
     {
         this.router = router;
         config.title = 'Browser Title';
+
+		// config.addPipelineStep('authorize', LogNextStep);
+		// config.addPipelineStep('preActivate', LogNextStep);
+		// config.addPipelineStep('preRender', LogNextStep);
+		// config.addPipelineStep('postRender', LogNextStep);
+		config.addPipelineStep('authorize', NavToastStep);
+
         config.map([
                 // Copy-paste
 				{ route: ['', 'events'], 
@@ -20,4 +29,30 @@ export class Shell
 					sideBar: { moduleId: 'sideBar/ads'} } , name: 'eventDetail'}
         ]);
     }
+}
+
+class LogNextStep
+{
+	run(navigationInstruction, next)
+	{
+		return next().then(result => {
+			console.log(JSON.stringify(result));
+			return result;
+		});
+	}
+}
+
+class NavToastStep
+{
+	run(navigationInstruction, next)
+	{
+		return next().then(result =>
+		{
+			if (result.status === 'canceled')
+				toastr.error('Navigation Cancelled');
+			if (result.status === 'completed')
+				toastr.info('Navigation Completed');
+			return result;
+		});
+	}
 }
