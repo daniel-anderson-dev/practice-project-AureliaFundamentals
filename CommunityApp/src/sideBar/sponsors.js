@@ -9,9 +9,6 @@ export class Sponsors
         this.mapCollection.set('b', 'Bravo');
         this.mapCollection.set('c', 'Charlie');
         this.mapCollection.set('d', 'Delta');
-
-        this.styleString = 'background: red;';
-        this.styleObject = { background: 'green'};
     }
 
     doSomething(passedMessage)
