@@ -1,4 +1,6 @@
 <template>
     <div textContent.one-time="message"></div>
     <button type="button" click.delegate="doSomething(message)">Click Here</button>
+    <input type="text" ref="input1"/>
+    <div>${input1.value}</div>
 </template>
