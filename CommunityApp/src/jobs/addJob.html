@@ -13,6 +13,20 @@
             <input type="text" id="needDate" value.bind="job.needDate" placeholder="Need Date" />
         </div>
         <div class="form-group">
+            <label for="jobType">Job Type</label>
+            <label repeat.for="jobType of jobTypes">
+                <input type="radio" name="jobType" value.bind="jobType" checked.bind="$parent.job.jobType" />
+                ${jobType}
+            </label>
+        </div>
+        <div class="form-group">
+            <label>Job Skills:</label>
+            <label repeat.for="jobSkill of jobSkills">
+                <input type="checkbox" value.bind="jobSkill" checked.bind="$parent.job.jobSkills" />
+                ${jobSkill}
+            </label>
+        </div>
+        <div class="form-group">
             <label for="city">City</label>
             <input type="text" id="city" value.bind="job.location.city" placeholder="City" />
         </div>
