@@ -19,14 +19,16 @@ export class Shell
 					viewPorts: { mainContent: {moduleId: 'events/events'}, 
 					sideBar: {moduleId: 'sideBar/sponsors'}} , 
 					name: 'Events', title: 'Events', nav: true},
-				{ route: 'jobs', viewPorts: { mainContent: {moduleId: 'jobs/jobs'}, 
+				{ route: 'jobs', name: 'jobs', viewPorts: { mainContent: {moduleId: 'jobs/jobs'}, 
 					sideBar: { moduleId: 'sideBar/sponsors'}},  
 					title: 'Jobs', nav: true },
 				{ route: 'discussion', viewPorts: { mainContent: {moduleId: 'discussion/discussion'}, 
 					sideBar: { moduleId: 'sideBar/ads'} } , 
 					title: 'Discussion', nav:true },
 				{ route: 'eventDetail/:eventId', viewPorts: { mainContent: { moduleId: 'events/eventDetail'}, 
-					sideBar: { moduleId: 'sideBar/ads'} } , name: 'eventDetail'}
+					sideBar: { moduleId: 'sideBar/ads'} } , name: 'eventDetail'},
+				{ route: 'addJob', name: 'addJob', viewPorts:
+					{ mainContent: { moduleId: 'jobs/addJob' }, sideBar: { moduleId: 'sideBar/sponsors'} }}
         ]);
     }
 }
