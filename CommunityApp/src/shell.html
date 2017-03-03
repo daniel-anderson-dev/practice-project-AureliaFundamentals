@@ -29,6 +29,9 @@
     </nav>
 
     <div class="container">
+        <div style="background: lightgreen;" show.bind="notification" click.delegate="clearNotification()">
+            Notification Received: ${notification}
+        </div>
         <div class="col-xs-10">
             <router-view name="mainContent"></router-view>
         </div>

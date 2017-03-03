@@ -5,6 +5,8 @@ import moment from 'moment';
 import {HttpClient} from 'aurelia-http-client';
 import {inject} from 'aurelia-framework';
 import {HttpClient as HttpFetch, json} from 'aurelia-fetch-client';
+import {EventAggregator} from 'aurelia-event-aggregator';
+import {NotificationPayload} from 'common/NotificationPayload';
 
 // Copy-paste
 function filterAndFormat(pastOrFuture, events) {
@@ -22,14 +24,22 @@ function filterAndFormat(pastOrFuture, events) {
 	return results;
 }
 
-@inject(HttpClient, 'apiRoot', HttpFetch)
+@inject(HttpClient, 'apiRoot', HttpFetch, EventAggregator)
 export class DataRepository
 {
-    constructor(httpClient, apiRoot, httpFetch)
+    constructor(httpClient, apiRoot, httpFetch, eventAggregator)
     {
 		this.httpClient = httpClient;
 		this.apiRoot = apiRoot;
 		this.httpFetch = httpFetch;
+		this.eventAggregator = eventAggregator;
+
+		setTimeout(() => this.backgroundNotificationReceived(this.eventAggregator), 5000);
+	}
+
+	backgroundNotificationReceived(ea)
+	{
+		ea.publish(new NotificationPayload(moment().format('HH:mm:ss')));
 	}
 
     getEvents(pastOrFuture)
