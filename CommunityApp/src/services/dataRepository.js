@@ -2,6 +2,8 @@ import {eventsData} from 'services/eventsData'
 import {jobsData, states, jobTypes, jobSkills} from 'services/jobsData'
 // Apparently moment is not an ES6 "module" and is instead "just an object".
 import moment from 'moment';
+import {HttpClient} from 'aurelia-http-client';
+import {inject} from 'aurelia-framework';
 
 // Copy-paste
 function filterAndFormat(pastOrFuture, events) {
@@ -19,28 +21,32 @@ function filterAndFormat(pastOrFuture, events) {
 	return results;
 }
 
+@inject(HttpClient)
 export class DataRepository
 {
-    constructor()
-    { }
+    constructor(httpClient)
+    {
+		this.httpClient = httpClient;
+	}
 
     getEvents(pastOrFuture)
     {
         // Copy-paste
 		var promise = new Promise((resolve, reject) => {
 			if (!this.events) {
-				setTimeout(() => {
-					this.events = eventsData.sort((a,b) =>
+				this.httpClient.get('http://localhost:27092/api/Events')
+				.then(result => {
+					var data = JSON.parse(result.response);
+					this.events = data.sort((a,b) =>
 					 a.dateTime >= b.dateTime ? 1 : -1);
-					resolve(filterAndFormat(pastOrFuture, this.events));					
-				},10);
+					resolve(filterAndFormat(pastOrFuture, this.events));
+				});
 			}
 			else {
 				resolve(filterAndFormat(pastOrFuture, this.events));
 			}
 		});
-
-        return promise;
+		return promise;
     }
 
     getEvent(eventId)
