@@ -2,7 +2,7 @@
     <form submit.delegate="save()">
         <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" value.bind="job.title" class="form-control" id="title" placeholder="Title" />
+            <input type="text" value.bind="job.title & validate" class="form-control" id="title" placeholder="Title" />
         </div>
         <div class="form-group">
             <label for="description">Description</label>
@@ -37,6 +37,11 @@
                 <option repeat.for="state of states" model.bind="state.abbreviation">${state.name} (${state.abbreviation})</option>
             </select>
         </div>
+        <ul if.bind="controller.errors">
+            <li repeat.for="error of controller.errors" style="color: red;">
+                ${error.message}
+            </li>
+        </ul>
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
 </template>
