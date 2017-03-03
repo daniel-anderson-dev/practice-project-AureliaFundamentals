@@ -4,6 +4,7 @@ import {jobsData, states, jobTypes, jobSkills} from 'services/jobsData'
 import moment from 'moment';
 import {HttpClient} from 'aurelia-http-client';
 import {inject} from 'aurelia-framework';
+import {HttpClient as HttpFetch, json} from 'aurelia-fetch-client';
 
 // Copy-paste
 function filterAndFormat(pastOrFuture, events) {
@@ -21,12 +22,14 @@ function filterAndFormat(pastOrFuture, events) {
 	return results;
 }
 
-@inject(HttpClient)
+@inject(HttpClient, 'apiRoot', HttpFetch)
 export class DataRepository
 {
-    constructor(httpClient)
+    constructor(httpClient, apiRoot, httpFetch)
     {
 		this.httpClient = httpClient;
+		this.apiRoot = apiRoot;
+		this.httpFetch = httpFetch;
 	}
 
     getEvents(pastOrFuture)
@@ -34,7 +37,7 @@ export class DataRepository
         // Copy-paste
 		var promise = new Promise((resolve, reject) => {
 			if (!this.events) {
-				this.httpClient.get('http://localhost:27092/api/Events')
+				this.httpClient.get(this.apiRoot + '/api/Events')
 				.then(result => {
 					var data = JSON.parse(result.response);
 					this.events = data.sort((a,b) =>
@@ -57,8 +60,16 @@ export class DataRepository
 	addJob(job)
 	{
 		var promise = new Promise((resolve,reject) => {
-			this.jobs.push(job);
-			resolve(job);
+			this.httpFetch.fetch(this.apiRoot + 'api/Jobs', {
+				method: 'POST'
+				, body: json(job)
+			})
+			.then(response => response.json())
+			.then(data => {
+				this.jobs.push(data);
+				resolve(data);
+			})
+			.catch(err => reject(err));
 		});
 		return promise;
 	}
@@ -67,9 +78,17 @@ export class DataRepository
 	getJobs() {
 		var promise = new Promise((resolve, reject) => {
 			if (!this.jobs) {
-				this.jobs = jobsData;
+				this.httpFetch.fetch(this.apiRoot + '/api/Jobs')
+				.then(response => response.json())
+				.then(data =>
+				{
+					this.jobs = data;
+					resolve(this.jobs);
+				})
+				.catch(err => reject(err));
 			}
-			resolve(this.jobs);
+			else
+				resolve(this.jobs);
 		});
 		return promise;
 	}

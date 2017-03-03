@@ -4,6 +4,8 @@ import {PlugIn2} from 'Plugin2';
 
 export function configure(aurelia)
 {
+
+    aurelia.use.instance('apiRoot','http://localhost:27092/');
     aurelia.use.globalResources('common/dateFormat');
 
     aurelia.use.standardConfiguration().developmentLogging();
